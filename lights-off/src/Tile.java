@@ -19,6 +19,9 @@ public class Tile {
     public String toString() {
         return String.format("%3s, ",getState());
     }
+    public Tile clone(){
+        return new Tile(state);
+    }
 }
 enum State {
     ON,OFF
