@@ -68,4 +68,30 @@ public class Board {
         System.out.println(sb);
     }
 
+    public boolean isGoal(){
+        for (Tile[] tilesRow : board)
+            for(Tile t : tilesRow)
+                if (t.getState() == State.OFF)
+                    return false;
+        return true;
+    }
+    public String hash(){
+        String hash = "";
+        for (Tile[] tilesRow : board)
+            for(Tile t : tilesRow)
+                if (t.getState() == State.OFF)
+                    hash += "0";
+                else
+                    hash += "1";
+        return hash;
+    }
+
+    public Board clone(){
+        Tile[][] cloneTiles = new Tile[size][size];
+        for (int i = 0; i < size ; i++)
+            for (int j = 0; j < size ; j++)
+                cloneTiles[i][j] = board[i][j].clone();
+
+        return new Board(cloneTiles , size);     
+    }
 }
