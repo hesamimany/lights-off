@@ -19,6 +19,7 @@ public class BFS{
             Node temp = frontier.poll();
             inFrontier.remove(temp.hash());
             ArrayList<Node> children = temp.successor();
+            children.sort((a,b)->b.heuristic()-a.heuristic());
             for (Node child : children) {
                 if (!(inFrontier.containsKey(child.hash()))) {
                     if (child.isGoal()) {
@@ -30,6 +31,8 @@ public class BFS{
                     inFrontier.put(child.hash(), true);
                 }
             }
+
+
         }
         System.out.println("no solution");
     }
